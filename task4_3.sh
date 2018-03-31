@@ -12,7 +12,6 @@ else
 
 		if [ -f "$1" ] || [  -d "$1" ] ; then
 		#
-		echo "OK"
 		BCKPDIR="/tmp/backups"
 		TARGET="$1"
 		COUNT="$2"
@@ -25,7 +24,7 @@ else
                 if [ ! -d "$BCKPDIR" ] ; then
                         /bin/mkdir -p $BCKPDIR
                 fi
-		/bin/tar -czvf "$BCKPDIR/$FILENAME" "$TARGET" && ls -tp $BCKPDIR/$FILEMASK-*.tar.gz | grep -v '/$' | tail -n +$(($COUNT+1)) | xargs -I {} rm -- {}
+		/bin/tar -czvf "$BCKPDIR/$FILENAME" "$TARGET" && ls -tp "$BCKPDIR/$FILEMASK"-*.tar.gz | grep -v '/$' | tail -n +$(($COUNT+1)) | xargs -I {} rm -- {}
 		#
 		else
 		echo "No such file or directory. Nothing to backup, you enter $1"
