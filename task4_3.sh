@@ -21,12 +21,11 @@ else
 		OUTFILE=$CURPATH/$SCRPATH'task4_3.out'
 		TMPFILE=$CURPATH/$SCRPATH'task4_3.tmp'
 		FILEMASK="$(echo $1 | cut -c 2- | tr '/' '-')"
-		#BCKPFILE="$(echo )"
-                if [ ! -d "$1" ] ; then
-                        mkdir -r $BCKPDIR
+		FILENAME="$FILEMASK-$(date +%F_%H-%M-%S_%N)'.tar.gz'"
+                if [ ! -d "$BCKPDIR" ] ; then
+                        /bin/mkdir -p $BCKPDIR
                 fi
-
-		#/usr/lib/tar -czvf
+		/bin/tar -czvf "$BCKPDIR/$FILENAME" "$TARGET"
 		#
 		else
 		echo "No such file or directory. Nothing to backup, you enter $1"
